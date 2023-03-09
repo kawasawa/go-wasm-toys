@@ -1,0 +1,32 @@
+body {
+    animation: fadeIn 0.75s ease-in;
+    -webkit-animation: fadeIn 0.75s ease-in;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+input {
+    width: 95%;
+}
+
+textarea {
+    height: auto;
+}

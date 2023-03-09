@@ -1,0 +1,9 @@
+**/build/
+**/dist/
+**/coverage/
+
+**/.DS_Store
+**/.env.local
+**/.env.*.local
+# **/*.wasm
+**/*.log*

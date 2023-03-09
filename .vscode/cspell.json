@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [
+    ".git/",
+    ".github/",
+    ".vscode/",
+    ".workspace/",
+    "go.mod",
+    "go.sum",
+    "*_test.*"
+  ],
+  "words": [
+    "awasawa",
+    "encryptor",
+    "GOARCH",
+    "kazuki",
+    "strcase",
+    "usecase"
+  ]
+}

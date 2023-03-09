@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="../favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="JSON Formatter">
+	<title>format</title>
+	<link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css" rel="stylesheet">
+	<link href="../common.css" rel="stylesheet">
+	<script src="../wasm_exec.js" type="text/javascript"></script>
+	<script src="../common.js" type="text/javascript"></script>
+	<script>goRun();</script>
+</head>
+
+<body>
+	<header id="layouts.header"></header>
+	<main>
+		<div>
+			<label for="value0">text</label>
+			<textarea id="value0" onfocus="this.select();">
+{"name":  {"first":"Tom","last":"Anderson"},  "age":37,
+"children": ["Sara","Alex","Jack"],
+"fav.movie": "Deer Hunter", "friends": [
+    {"first": "Janet", "last": "Murphy", "age": 44}
+  ]}
+			</textarea>
+		</div>
+		<div>
+			<button onClick="formatJson('value0');">format</button>
+		</div>
+		<div>
+			<label for="result">result</label>
+			<textarea id="result" onfocus="this.select();" readonly></textarea>
+		</div>
+	</main>
+	<footer id="layouts.footer">
+		<p><a href="../">return to home</a></p>
+	</footer>
+
+	<script>
+		const formatJson = (value0) => {
+			const response = invokeFormatJson(value0);
+			console.log("Go Wasm response", response);
+			if (!validateResponse(response)) return;
+			refreshResultTextArea("result", response);
+		}
+	</script>
+</body>
+
+</html>
