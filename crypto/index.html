@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css">
+	<script src="../wasm_exec.js"></script>
+	<script>
+		const go = new Go();
+		WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((source) => go.run(source.instance));
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>crypto</h1>
+		<p>AES encryptor</p>
+	</header>
+
+	<main>
+		<div>
+			<label for="value0">text</label>
+			<input type="text" id="value0" onfocus="this.select();" value="message" />
+		</div>
+		<div>
+			<label for="value1">key</label>
+			<input type="text" id="value1" onfocus="this.select();" value="secret" />
+		</div>
+		<div>
+			<button onClick="encryptAES('value0', 'value1');">encrypt</button>
+			<button onClick="decryptAES('value0', 'value1');">decrypt</button>
+		</div>
+		<div>
+			<label for="result">result</label>
+			<textarea id="result" onfocus="this.select();" readonly></textarea>
+		</div>
+	</main>
+
+	<footer>
+		<p><a href="../">return to home</a></p>
+		<p>© <a href="https://kawasawa.github.io/" target="_blank">Kazuki Awasawa</a> All Rights Reserved.</p>
+	</footer>
+
+	<script>
+		const validateResponse = (response) => {
+			if (response == null || !("error" in response)) return true;
+			console.log("Go Wasm response", response);
+			alert(response.error);
+			return false;
+		}
+		const refreshResult = (response) => {
+			if (response == null || !("value" in response)) return;
+			result.innerHTML = response.value;
+			result.select();
+		}
+		const encryptAES = (value0, value1) => {
+			const response = invokeEncryptAES(value0, value1);
+			if (!validateResponse(response)) return;
+			refreshResult(response);
+		}
+		const decryptAES = (value0, value1) => {
+			const response = invokeDecryptAES(value0, value1);
+			if (!validateResponse(response)) return;
+			refreshResult(response);
+		}
+	</script>
+</body>
+
+</html>
