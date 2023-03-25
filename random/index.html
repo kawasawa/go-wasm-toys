@@ -48,6 +48,11 @@
 	</footer>
 
 	<script>
+		const generatePassword = (value0, value1, value2) => {
+			const response = invokeGeneratePassword(value0, value1, value2);
+			if (!validateResponse(response)) return;
+			refreshResult(response);
+		}
 		const validateResponse = (response) => {
 			if (response == null || !("error" in response)) return true;
 			console.log("Go Wasm response", response);
@@ -62,11 +67,6 @@
 				result.innerHTML += response[`value${i}`];
 			}
 			result.select();
-		}
-		const generatePassword = (value0, value1, value2) => {
-			const response = invokeGeneratePassword(value0, value1, value2);
-			if (!validateResponse(response)) return;
-			refreshResult(response);
 		}
 	</script>
 </body>

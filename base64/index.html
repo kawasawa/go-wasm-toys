@@ -40,6 +40,16 @@
 	</footer>
 
 	<script>
+		const encodeBase64 = (value0) => {
+			const response = invokeEncodeBase64(value0);
+			if (!validateResponse(response)) return;
+			refreshResult(response);
+		}
+		const decodeBase64 = (value0) => {
+			const response = invokeDecodeBase64(value0);
+			if (!validateResponse(response)) return;
+			refreshResult(response);
+		}
 		const validateResponse = (response) => {
 			if (response == null || !("error" in response)) return true;
 			console.log("Go Wasm response", response);
@@ -54,16 +64,6 @@
 				result.innerHTML += response[`value${i}`];
 			}
 			result.select();
-		}
-		const encodeBase64 = (value0) => {
-			const response = invokeEncodeBase64(value0);
-			if (!validateResponse(response)) return;
-			refreshResult(response);
-		}
-		const decodeBase64 = (value0) => {
-			const response = invokeDecodeBase64(value0);
-			if (!validateResponse(response)) return;
-			refreshResult(response);
 		}
 	</script>
 </body>

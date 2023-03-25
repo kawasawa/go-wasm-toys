@@ -15,22 +15,23 @@
 
 <body>
 	<header>
-		<h1>crypto</h1>
-		<p>AES(SHA-256) encryptor</p>
+		<h1>Format</h1>
+		<p>Json Formatter</p>
 	</header>
 
 	<main>
 		<div>
 			<label for="value0">text</label>
-			<input type="text" id="value0" onfocus="this.select();" value="message" />
+			<textarea id="value0" onfocus="this.select();">
+{"name":  {"first":"Tom","last":"Anderson"},  "age":37,
+"children": ["Sara","Alex","Jack"],
+"fav.movie": "Deer Hunter", "friends": [
+    {"first": "Janet", "last": "Murphy", "age": 44}
+  ]}
+			</textarea>
 		</div>
 		<div>
-			<label for="value1">key</label>
-			<input type="text" id="value1" onfocus="this.select();" value="secret" />
-		</div>
-		<div>
-			<button onClick="encryptAES('value0', 'value1');">encrypt</button>
-			<button onClick="decryptAES('value0', 'value1');">decrypt</button>
+			<button onClick="formatJson('value0');">format</button>
 		</div>
 		<div>
 			<label for="result">result</label>
@@ -44,13 +45,8 @@
 	</footer>
 
 	<script>
-		const encryptAES = (value0, value1) => {
-			const response = invokeEncryptAES(value0, value1);
-			if (!validateResponse(response)) return;
-			refreshResult(response);
-		}
-		const decryptAES = (value0, value1) => {
-			const response = invokeDecryptAES(value0, value1);
+		const formatJson = (value0) => {
+			const response = invokeFormatJson(value0);
 			if (!validateResponse(response)) return;
 			refreshResult(response);
 		}
@@ -68,6 +64,8 @@
 				result.innerHTML += response[`value${i}`];
 			}
 			result.select();
+			result.style.height = "auto";
+			result.style.height = `${result.scrollHeight}px`;
 		}
 	</script>
 </body>
