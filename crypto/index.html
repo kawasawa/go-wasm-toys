@@ -50,8 +50,12 @@
 			return false;
 		}
 		const refreshResult = (response) => {
-			if (response == null || !("value" in response)) return;
-			result.innerHTML = response.value;
+			if (response == null || !("count" in response)) return;
+			result.innerHTML = "";
+			for (let i = 0; i < response.count; i++) {
+				if (0 < i) result.innerHTML += '\n'
+				result.innerHTML += response[`value${i}`];
+			}
 			result.select();
 		}
 		const encryptAES = (value0, value1) => {
