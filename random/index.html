@@ -68,6 +68,8 @@
 				result.innerHTML += response[`value${i}`];
 			}
 			result.select();
+			result.style.height = "auto";
+			result.style.height = `${result.scrollHeight}px`;
 		}
 	</script>
 </body>
