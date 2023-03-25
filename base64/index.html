@@ -14,8 +14,8 @@
 
 <body>
 	<header>
-		<h1>crypto</h1>
-		<p>AES(SHA-256) encryptor</p>
+		<h1>Base64</h1>
+		<p>Base64 encoder</p>
 	</header>
 
 	<main>
@@ -24,12 +24,8 @@
 			<input type="text" id="value0" onfocus="this.select();" value="message" />
 		</div>
 		<div>
-			<label for="value1">key</label>
-			<input type="text" id="value1" onfocus="this.select();" value="secret" />
-		</div>
-		<div>
-			<button onClick="encryptAES('value0', 'value1');">encrypt</button>
-			<button onClick="decryptAES('value0', 'value1');">decrypt</button>
+			<button onClick="encodeBase64('value0');">encode</button>
+			<button onClick="decodeBase64('value0');">decode</button>
 		</div>
 		<div>
 			<label for="result">result</label>
@@ -58,13 +54,13 @@
 			}
 			result.select();
 		}
-		const encryptAES = (value0, value1) => {
-			const response = invokeEncryptAES(value0, value1);
+		const encodeBase64 = (value0) => {
+			const response = invokeEncodeBase64(value0);
 			if (!validateResponse(response)) return;
 			refreshResult(response);
 		}
-		const decryptAES = (value0, value1) => {
-			const response = invokeDecryptAES(value0, value1);
+		const decodeBase64 = (value0) => {
+			const response = invokeDecodeBase64(value0);
 			if (!validateResponse(response)) return;
 			refreshResult(response);
 		}
