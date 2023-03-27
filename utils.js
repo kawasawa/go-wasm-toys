@@ -1,9 +1,12 @@
+// -----------------------------------------------------------------------------
+// メソッド
+// -----------------------------------------------------------------------------
+
 const validateResponse = (response) => {
     if (response === null || !("error" in response)) return true;
     alert(response.error);
     return false;
 }
-
 
 const refreshResultTextArea = (resultTextAreaName, response) => {
     if (response === null || !("count" in response)) return;
@@ -31,6 +34,10 @@ const refreshResultInput = (resultInputFixedName, response) => {
         if (i === 0) input.select();
     }
 }
+
+// -----------------------------------------------------------------------------
+// イベントハンドラ
+// -----------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("title").innerText = document.title;
