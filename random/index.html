@@ -37,7 +37,7 @@
 			<input id="value2" type="text" onfocus="this.select();" value="10" />
 		</div>
 		<div>
-			<button onClick="generatePassword('value0', 'value1', 'value2');">generate</button>
+			<button onClick="generateRandom('value0', 'value1', 'value2');">generate</button>
 		</div>
 		<div>
 			<label for="result">result</label>
@@ -51,8 +51,8 @@
 	</footer>
 
 	<script>
-		const generatePassword = (value0, value1, value2) => {
-			const response = invokeGeneratePassword(value0, value1, value2);
+		const generateRandom = (value0, value1, value2) => {
+			const response = invokeGenerateRandom(value0, value1, value2);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
 			refreshResultTextArea("result", response);
