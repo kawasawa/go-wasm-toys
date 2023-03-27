@@ -5,8 +5,10 @@
 	<meta charset="utf-8">
 	<link rel="icon" href="../favicon.ico">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="Random values generator">
+	<title>random</title>
 	<link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css" rel="stylesheet">
-	<title>seventools</title>
+	<script src="../utils.js"></script>
 	<script src="../wasm_exec.js"></script>
 	<script>
 		const go = new Go();
@@ -16,30 +18,30 @@
 
 <body>
 	<header>
-		<h1>random</h1>
-		<p>Random values generator</p>
+		<h1 id="title"></h1>
+		<p id="description"></p>
 	</header>
 
 	<main>
 		<div>
 			<label for="value0">characters</label>
-			<input type="text" id="value0" onfocus="this.select();"
+			<input id="value0" type="text" onfocus="this.select();"
 				value="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!#$%&()=-\@+*/>?'^~|`:;,._[]{}" />
 		</div>
 		<div>
 			<label for="value1">length</label>
-			<input type="text" id="value1" onfocus="this.select();" value="32" />
+			<input id="value1" type="text" onfocus="this.select();" value="32" />
 		</div>
 		<div>
-			<label for="value1">count</label>
-			<input type="text" id="value2" onfocus="this.select();" value="10" />
+			<label for="value2">count</label>
+			<input id="value2" type="text" onfocus="this.select();" value="10" />
 		</div>
 		<div>
 			<button onClick="generatePassword('value0', 'value1', 'value2');">generate</button>
 		</div>
 		<div>
 			<label for="result">result</label>
-			<textarea id="result" onfocus="this.select();" readonly></textarea>
+			<textarea id="result" onfocus="this.select();" style="height: auto;" readonly></textarea>
 		</div>
 	</main>
 
@@ -52,24 +54,7 @@
 		const generatePassword = (value0, value1, value2) => {
 			const response = invokeGeneratePassword(value0, value1, value2);
 			if (!validateResponse(response)) return;
-			refreshResult(response);
-		}
-		const validateResponse = (response) => {
-			if (response == null || !("error" in response)) return true;
-			console.log("Go Wasm response", response);
-			alert(response.error);
-			return false;
-		}
-		const refreshResult = (response) => {
-			if (response == null || !("count" in response)) return;
-			result.innerHTML = "";
-			for (let i = 0; i < response.count; i++) {
-				if (0 < i) result.innerHTML += '\n'
-				result.innerHTML += response[`value${i}`];
-			}
-			result.select();
-			result.style.height = "auto";
-			result.style.height = `${result.scrollHeight}px`;
+			refreshResult(result, response);
 		}
 	</script>
 </body>
