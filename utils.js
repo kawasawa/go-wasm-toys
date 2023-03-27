@@ -5,7 +5,7 @@ const validateResponse = (response) => {
 }
 
 
-const refreshResult = (resultTextAreaName, response) => {
+const refreshResultTextArea = (resultTextAreaName, response) => {
     if (response === null || !("count" in response)) return;
 
     const textArea = document.getElementById(resultTextAreaName)
@@ -22,7 +22,7 @@ const refreshResult = (resultTextAreaName, response) => {
     textArea.select();
 }
 
-const refreshResultArray = (resultInputFixedName, response) => {
+const refreshResultInput = (resultInputFixedName, response) => {
     if (response === null || !("count" in response)) return;
 
     for (let i = 0; i < response.count; i++) {

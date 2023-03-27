@@ -36,8 +36,8 @@
 			<button onClick="decryptAES('value0', 'value1');">decrypt</button>
 		</div>
 		<div>
-			<label for="result">result</label>
-			<textarea id="result" onfocus="this.select();" style="height: auto;" readonly></textarea>
+			<label for="result0">result</label>
+			<input id="result0" onfocus="this.select();" style="width: 95%;" readonly></input>
 		</div>
 	</main>
 
@@ -51,13 +51,13 @@
 			const response = invokeEncryptAES(value0, value1);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResult("result", response);
+			refreshResultInput("result", response);
 		}
 		const decryptAES = (value0, value1) => {
 			const response = invokeDecryptAES(value0, value1);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResult("result", response);
+			refreshResultInput("result", response);
 		}
 	</script>
 </body>

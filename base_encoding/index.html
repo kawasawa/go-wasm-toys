@@ -50,13 +50,13 @@
 			const response = invokeBaseEncode(value0);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResultArray("result", response);
+			refreshResultInput("result", response);
 		}
 		const baseDecode = (value0) => {
 			const response = invokeBaseDecode(value0);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResultArray("result", response);
+			refreshResultInput("result", response);
 		}
 	</script>
 </body>
