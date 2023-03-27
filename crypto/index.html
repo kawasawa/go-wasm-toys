@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<link rel="icon" href="../favicon.ico">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="AES(SHA-256) encryptor">
+	<meta name="description" content="AES256-GCM encryptor">
 	<title>crypto</title>
 	<link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css" rel="stylesheet">
 	<script src="../utils.js"></script>
@@ -49,13 +49,15 @@
 	<script>
 		const encryptAES = (value0, value1) => {
 			const response = invokeEncryptAES(value0, value1);
+			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResult(result, response);
+			refreshResult("result", response);
 		}
 		const decryptAES = (value0, value1) => {
 			const response = invokeDecryptAES(value0, value1);
+			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResult(result, response);
+			refreshResult("result", response);
 		}
 	</script>
 </body>

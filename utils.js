@@ -1,24 +1,35 @@
 const validateResponse = (response) => {
-    if (response == null || !("error" in response)) return true;
-    console.log("Go Wasm response", response);
+    if (response === null || !("error" in response)) return true;
     alert(response.error);
     return false;
 }
 
 
-const refreshResult = (result, response) => {
-    if (response == null || !("count" in response)) return;
+const refreshResult = (resultTextAreaName, response) => {
+    if (response === null || !("count" in response)) return;
 
-    result.innerHTML = "";
+    const textArea = document.getElementById(resultTextAreaName)
+
+    textArea.innerHTML = "";
     for (let i = 0; i < response.count; i++) {
-        if (0 < i) result.innerHTML += '\n'
-        result.innerHTML += response[`value${i}`];
+        if (0 < i) textArea.innerHTML += '\n'
+        textArea.innerHTML += response[`value${i}`];
     }
 
-    if (result.style.height !== "auto") result.style.height = "auto";
-    if (result.innerHTML.indexOf('\n') !== -1) result.style.height = `${result.scrollHeight}px`;
+    if (textArea.style.height !== "auto") textArea.style.height = "auto";
+    if (textArea.innerHTML.indexOf('\n') !== -1) textArea.style.height = `${textArea.scrollHeight}px`;
 
-    result.select();
+    textArea.select();
+}
+
+const refreshResultArray = (resultInputFixedName, response) => {
+    if (response === null || !("count" in response)) return;
+
+    for (let i = 0; i < response.count; i++) {
+        const input = document.getElementById(`${resultInputFixedName}${i}`)
+        input.value = response[`value${i}`];
+        if (i === 0) input.select();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

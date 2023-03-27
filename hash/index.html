@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<link rel="icon" href="../favicon.ico">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="Json Formatter">
-	<title>format</title>
+	<meta name="description" content="Hashed values generator">
+	<title>hash</title>
 	<link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css" rel="stylesheet">
 	<script src="../utils.js"></script>
 	<script src="../wasm_exec.js"></script>
@@ -25,20 +25,23 @@
 	<main>
 		<div>
 			<label for="value0">text</label>
-			<textarea id="value0" onfocus="this.select();">
-{"name":  {"first":"Tom","last":"Anderson"},  "age":37,
-"children": ["Sara","Alex","Jack"],
-"fav.movie": "Deer Hunter", "friends": [
-    {"first": "Janet", "last": "Murphy", "age": 44}
-  ]}
-			</textarea>
+			<input id="value0" type="text" onfocus="this.select();" value="message" />
 		</div>
 		<div>
-			<button onClick="formatJson('value0');">format</button>
+			<button onClick="hash('value0');">hash</button>
 		</div>
 		<div>
-			<label for="result">result</label>
-			<textarea id="result" onfocus="this.select();" style="height: auto;" readonly></textarea>
+			<h3>result</h3>
+			<label for="result0">MD5</label>
+			<input id="result0" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<label for="result1">SHA1</label>
+			<input id="result1" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<label for="result1">SHA256</label>
+			<input id="result2" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<label for="result1">SHA384</label>
+			<input id="result3" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<label for="result1">SHA512</label>
+			<input id="result4" onfocus="this.select();" style="width: 95%;" readonly></input>
 		</div>
 	</main>
 
@@ -48,11 +51,11 @@
 	</footer>
 
 	<script>
-		const formatJson = (value0) => {
-			const response = invokeFormatJson(value0);
+		const hash = (value0) => {
+			const response = invokeHash(value0);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResult("result", response);
+			refreshResultArray("result", response);
 		}
 	</script>
 </body>

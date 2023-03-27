@@ -53,8 +53,9 @@
 	<script>
 		const generatePassword = (value0, value1, value2) => {
 			const response = invokeGeneratePassword(value0, value1, value2);
+			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
-			refreshResult(result, response);
+			refreshResult("result", response);
 		}
 	</script>
 </body>
