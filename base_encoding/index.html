@@ -28,8 +28,8 @@
 			<input id="value0" type="text" onfocus="this.select();" value="message" />
 		</div>
 		<div>
-			<button onClick="baseEncode('value0');">encode</button>
-			<button onClick="baseDecode('value0');">decode</button>
+			<button onClick="encodeBase('value0');">encode</button>
+			<button onClick="decodeBase('value0');">decode</button>
 		</div>
 		<div>
 			<h3>result</h3>
@@ -46,14 +46,14 @@
 	</footer>
 
 	<script>
-		const baseEncode = (value0) => {
-			const response = invokeBaseEncode(value0);
+		const encodeBase = (value0) => {
+			const response = invokeEncodeBase(value0);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
 			refreshResultInput("result", response);
 		}
-		const baseDecode = (value0) => {
-			const response = invokeBaseDecode(value0);
+		const decodeBase = (value0) => {
+			const response = invokeDecodeBase(value0);
 			console.log("Go Wasm response", response);
 			if (!validateResponse(response)) return;
 			refreshResultInput("result", response);

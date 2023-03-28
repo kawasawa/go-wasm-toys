@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="../favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="JWT decoder">
+	<title>jwt</title>
+	<link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css" rel="stylesheet">
+	<script src="../utils.js"></script>
+	<script src="../wasm_exec.js"></script>
+	<script>
+		const go = new Go();
+		WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((source) => go.run(source.instance));
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1 id="title"></h1>
+		<p id="description"></p>
+	</header>
+
+	<main>
+		<div>
+			<label for="value0">token</label>
+			<input id="value0" type="text" onfocus="this.select();"
+				value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o" />
+		</div>
+		<div>
+			<label for="value1">key</label>
+			<input id="value1" type="text" onfocus="this.select();" value="secret" />
+		</div>
+		<div>
+			<button onClick="decodeJwt('value0', 'value1');">decode</button>
+		</div>
+		<div>
+			<h3>result</h3>
+			<label for="result0">header</label>
+			<input id="result0" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<label for="result1">payload</label>
+			<input id="result1" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<label for="result2">verified</label>
+			<input id="result2" onfocus="this.select();" style="width: 95%;" readonly></input>
+		</div>
+	</main>
+
+	<footer>
+		<p><a href="../">return to home</a></p>
+		<p>© <a href="https://kawasawa.github.io/" target="_blank">Kazuki Awasawa</a> All Rights Reserved.</p>
+	</footer>
+
+	<script>
+		const decodeJwt = (value0, value1) => {
+			const response = invokeDecodeJwt(value0, value1);
+			console.log("Go Wasm response", response);
+			if (!validateResponse(response)) return;
+			refreshResultInput("result", response);
+		}
+	</script>
+</body>
+
+</html>
