@@ -51,12 +51,6 @@ const refreshResultInput = (resultInputFixedName, response) => {
 
 document.addEventListener("DOMContentLoaded", () => {
     // 共通要素を読み込む
-    const directoryExists = (url) => {
-        const request = new XMLHttpRequest();
-        request.open('HEAD', url, false);
-        request.send();
-        return request.status !== 404;
-    }
     const load = (elementId, path, after = false) => {
         const request = new XMLHttpRequest();
         request.onreadystatechange = () => {
@@ -67,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         request.open("GET", path, true);
         request.send(null);
     }
-    const commonDir = directoryExists("../common") ? "../common" : "./common";
+    const pathName = location.pathname.substring(0, location.pathname.lastIndexOf('/'))
+    const commonDir = 0 <= ['', '/toolbox'].indexOf(pathName) ? "./common" : "../common";
     load("layouts.header", `${commonDir}/header.html`);
     load("layouts.footer", `${commonDir}/footer.html`, true);
 
