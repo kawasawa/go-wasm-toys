@@ -8,24 +8,18 @@
 	<meta name="description" content="Case converter">
 	<title>case</title>
 	<link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css" rel="stylesheet">
-	<script src="../utils.js"></script>
-	<script src="../wasm_exec.js"></script>
-	<script>
-		const go = new Go();
-		WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((source) => go.run(source.instance));
-	</script>
+	<link href="../common.css" rel="stylesheet">
+	<script src="../wasm_exec.js" type="text/javascript"></script>
+	<script src="../common.js" type="text/javascript"></script>
+	<script>goRun();</script>
 </head>
 
 <body>
-	<header>
-		<h1 id="title"></h1>
-		<p id="description"></p>
-	</header>
-
+	<header id="layouts.header"></header>
 	<main>
 		<div>
 			<label for="value0">text</label>
-			<input id="value0" type="text" onfocus="this.select();" value="Hello World!__Bonjour le monde!" />
+			<input id="value0" onfocus="this.select();" value="Hello World!__Bonjour le monde!" />
 		</div>
 		<div>
 			<button onClick="convertCase('value0');">convert</button>
@@ -33,23 +27,21 @@
 		<div>
 			<h3>result</h3>
 			<label for="result0">camelCase</label>
-			<input id="result0" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<input id="result0" onfocus="this.select();" readonly></input>
 			<label for="result1">PascalCase</label>
-			<input id="result1" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<input id="result1" onfocus="this.select();" readonly></input>
 			<label for="result2">snake_case</label>
-			<input id="result2" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<input id="result2" onfocus="this.select();" readonly></input>
 			<label for="result3">kebab-case</label>
-			<input id="result3" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<input id="result3" onfocus="this.select();" readonly></input>
 			<label for="result4">UPPERCASE</label>
-			<input id="result4" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<input id="result4" onfocus="this.select();" readonly></input>
 			<label for="result5">lowercase</label>
-			<input id="result5" onfocus="this.select();" style="width: 95%;" readonly></input>
+			<input id="result5" onfocus="this.select();" readonly></input>
 		</div>
 	</main>
-
-	<footer>
+	<footer id="layouts.footer">
 		<p><a href="../">return to home</a></p>
-		<p>© <a href="https://kawasawa.github.io/" target="_blank">Kazuki Awasawa</a> All Rights Reserved.</p>
 	</footer>
 
 	<script>
