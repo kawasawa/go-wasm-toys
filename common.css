@@ -1,6 +1,6 @@
 body {
-    animation: fadeIn 0.8s ease-in;
-    -webkit-animation: fadeIn 0.8s ease-in;
+    animation: fadeIn 0.75s ease-in;
+    -webkit-animation: fadeIn 0.75s ease-in;
 }
 
 @keyframes fadeIn {
