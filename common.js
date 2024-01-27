@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         request.send(null);
     }
     const pathName = location.pathname.substring(0, location.pathname.lastIndexOf('/'))
-    const commonDir = 0 <= ['', '/toolbox'].indexOf(pathName) ? "./common" : "../common";
+    const commonDir = 0 <= ['', '/go-wasm-toys'].indexOf(pathName) ? "./common" : "../common";
     load("layouts.header", `${commonDir}/header.html`);
     load("layouts.footer", `${commonDir}/footer.html`, true);
 
